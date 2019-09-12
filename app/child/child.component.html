@@ -1,0 +1,55 @@
+<div class="container">
+ <form (ngSubmit)='onSubmit(myFormGroup)' [formGroup]="myFormGroup">
+    <div>
+        <label for="name">Name:</label>
+        <input id="name" formControlName="Name"/>
+        <span *ngIf="myFormGroup.controls.Name.touched && myFormGroup.controls.Name.invalid"
+        style="color:red">
+             Required
+        </span>
+    </div>
+    <div>
+        <label for="age">Age:</label>
+        <input id="age" formControlName="Age" maxlength="3"/>
+        <span *ngIf="myFormGroup.controls.Age.touched && myFormGroup.controls.Age.invalid" 
+        style="color:red">
+             Required
+        </span>
+        <span *ngIf="myFormGroup.controls.Age.touched && myFormGroup.controls.Age.errors?.pattern"
+        style="color:red">
+            Numbers accepted only.
+        </span>
+    </div>
+    <div>
+        <label for="phone">Phone:</label>
+        <input id="phone" formControlName="Phone" maxlength="10"/>
+        <span *ngIf="myFormGroup.controls.Phone.touched && myFormGroup.controls.Phone.invalid"
+        style="color:red">
+             Required(minimum 10 digits are required)
+        </span>
+        <span *ngIf="myFormGroup.controls.Phone.touched && myFormGroup.controls.Phone.errors?.pattern"
+        style="color:red">
+                Numbers accepted only.
+        </span>
+    </div>
+    <button type='submit'>
+            Submit
+    </button>
+ </form>
+</div>
+
+ <div class="container" *ngIf="show_table">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Phone</th>
+        </tr>
+        
+        <tr *ngFor="let data of table_json">
+            <td>{{data.Name}}</td>
+            <td>{{data.Age}}</td>
+            <td>{{data.Phone}}</td>
+        </tr>
+    </table>
+ </div>
